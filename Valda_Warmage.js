@@ -14,7 +14,7 @@ RequiredSheetVersion("13.1.12");
     Their kickstarter can be found here https://www.kickstarter.com/projects/magehandpress/spire-of-secrets/description
 
 	The original warmage class script was made by MPMB.
-	An additional contribuition was made by u/decoratedbear for the House of Knights subclass
+	An additional contribution was made by u/decoratedbear for the House of Knights subclass
 	These scripts were made for an older version of the class from MFoV (Middle Finger of Vecna)
 
     Due to the differences between VSoS and MFoV, I've had to write this script from scratch. 
@@ -24,7 +24,7 @@ RequiredSheetVersion("13.1.12");
 /*
     IMPORTANT
 
-    Caution: This sheet might not function properly  with Valda's Races, Equipment, Magic Items, and Spells found here https://pastebin.com/0CdaqJs5
+    Caution: This sheet might not function properly with Valda's Races, Equipment, Magic Items, and Spells found here https://pastebin.com/0CdaqJs5
     These scripts both contain cantrip and attack entries that might cause the sheet to not work properly. 
 	Additionally, the SourceList is the same and this will cause issues.
 */
@@ -101,7 +101,7 @@ ClassList["warmage"] = {
             "adventurer" : {
                 name : "Arcane Initiation: Adventurer",
                 description : desc([
-                    "You picked up your magic informally by traveling with a dozen different mages over the years. You learn the mage hand and ray of frost cantrips."
+                    "I picked up my magic informally by traveling with a dozen different mages over the years. I learn the mage hand and ray of frost cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Adventurer",
@@ -113,7 +113,7 @@ ClassList["warmage"] = {
             "circus performer" : {
                 name : "Arcane Initiation: Circus Performer",
                 description : desc([
-                    "You learned a few simple tricks to participate in a sideshow or circus act. You learn the dancing lights and minor illusion cantrips."
+                    "I learned a few simple tricks to participate in a sideshow or circus act. I learn the dancing lights and minor illusion cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Circus Performer",
@@ -125,7 +125,7 @@ ClassList["warmage"] = {
             "eldritch event" : {
                 name : "Arcane Initiation: Eldritch Event",
                 description : desc([
-                    "An influx of insidious magic left an imprint on you. You learn the chill touch and message cantrips."
+                    "An influx of insidious magic left an imprint on me. I learn the chill touch and message cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Eldritch Event",
@@ -137,7 +137,7 @@ ClassList["warmage"] = {
             "mercenary" : {
                 name : "Arcane Initiation: Mercenary",
                 description : desc([
-                    "You mastered the fundamentals of war magic to engage in battle with similarly armed arcanists. You learn the arc blade and true strike cantrips."
+                    "I mastered the fundamentals of war magic to engage in battle with similarly armed arcanists. I learn the arc blade and true strike cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Mercenary",
@@ -149,7 +149,7 @@ ClassList["warmage"] = {
             "temple" : {
                 name : "Arcane Initiation: Temple",
                 description : desc([
-                    "A monastery or temple educated you in the ways of gentle healing magic. You learn the sacred flame and spare the dying cantrips."
+                    "A monastery or temple educated me in the ways of gentle healing magic. I learn the sacred flame and spare the dying cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Temple",
@@ -161,7 +161,7 @@ ClassList["warmage"] = {
             "tower apprentice" : {
                 name : "Arcane Initiation: Tower Apprentice",
                 description : desc([
-                    "You apprenticed under a spellcaster for some time, who taught you the fundamentals of arcana. You learn the prestidigitation and shocking grasp cantrips."
+                    "I apprenticed under a spellcaster for some time, who taught me the fundamentals of arcana. I learn the prestidigitation and shocking grasp cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Tower Apprentice",
@@ -173,7 +173,7 @@ ClassList["warmage"] = {
             "self-taught" : {
                 name : "Arcane Initiation: Self-Taught",
                 description : desc([
-                    "You taught yourself all the fundamentals of magic from a dusty old tome or abandoned scroll. You learn the fire bolt and light cantrips."
+                    "I taught myself all the fundamentals of magic from a dusty old tome or abandoned scroll. I learn the fire bolt and light cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Self-Taught",
@@ -185,7 +185,7 @@ ClassList["warmage"] = {
             "survival" : {
                 name : "Arcane Initiation: Self-Taught",
                 description : desc([
-                    "You taught yourself all the fundamentals of magic from a dusty old tome or abandoned scroll. You learn the fire bolt and light cantrips."
+                    "I taught myself all the fundamentals of magic from a dusty old tome or abandoned scroll. I learn the fire bolt and light cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Self-Taught",
@@ -301,7 +301,7 @@ ClassList["warmage"] = {
 				source : ["VSoS", 161],
 				submenu : "[house of bishops]",
 				description : desc([
-					"You can take the Disengage action as a bonus action, and when you do so, your walking speed increases by 10 feet until the end of your turn."
+					"I can take the Disengage action as a bonus action, and when I do so, my walking speed increases by 10 feet until the end of my turn."
 				]),
 				action : ["bonus action",""],
 				prereqeval : function(v) { return classes.known.warmage.level >= 10 && (classes.known.warmage.subclass.indexOf("house of bishops") || ClassSubList["warmage-house of pawns"].features.subclassfeature3) !== -1; },
@@ -339,7 +339,7 @@ ClassList["warmage"] = {
 				source : ["VSoS", 161],
 				submenu : "[house of knights]",
 				description : desc([
-					"I gain proficiency with Insight and Persuasion, and have advantage on ability checks when interacting with nobility. Additionally, other creatures can always discern when you're telling the truth."
+					"I gain proficiency with Insight and Persuasion, and have advantage on ability checks when interacting with nobility. Additionally, other creatures can always discern when I'm telling the truth."
 				]),
 				skills : ["Insight", "Persuasion"],
 				skillstxt : "I gain proficiency with Insight and Persuasion",
@@ -365,7 +365,7 @@ ClassList["warmage"] = {
 				source : ["VSoS", 161],
 				submenu : "[house of kings]",
 				description : desc([
-					"I learn the find steed spell and can cast it without expending a spell slot. Your steed is more resilient than most; its hit point maximum is increased by an amount equal to your warmage level."
+					"I learn the find steed spell and can cast it without expending a spell slot. My steed is more resilient than most; its hit point maximum is increased by an amount equal to my warmage level."
 				]),
 				spellcastingBonus : {
 					name : "Commander's Steed",
@@ -614,8 +614,8 @@ ClassList["warmage"] = {
 					name : "Mage Hand Knack",
 					source : [["VSoS", 163]],
 					note : desc([
-						"Press: Choose a large or smaller creature and a direction away from that creature. Every foot of moment in that direction costs the creature 1 extra foot of movement. The hand continues this effect until the spell ends or you use your bonus action to use a different effect with the hand.",
-						"Punch: The hand strikes one creature or object within 5 ft of it. Make a melee spell attack for the hand using your spell attack bonus. On a hit, the target takes 1d6 force damage.",
+						"Press: Choose a large or smaller creature and a direction away from that creature. Every foot of moment in that direction costs the creature 1 extra foot of movement. The hand continues this effect until the spell ends or I use my bonus action to use a different effect with the hand.",
+						"Punch: The hand strikes one creature or object within 5 ft of it. Make a melee spell attack for the hand using my spell attack bonus. On a hit, the target takes 1d6 force damage.",
 						"Seize: The hand grabs a tiny creature and attempts to grapple it. The creature must succeed on a Strength (Athletics) or Dexterity (Acrobatics) check against my spell save DC or be grappled. The hand continues this effect until the target uses an action to break the grapple on its turn, the spell ends, or I use my bonus action to use a different effect with the hand."
 					])
 				}],
@@ -835,7 +835,7 @@ ClassList["warmage"] = {
 			minlevel : 14,
 			description : desc([
 				"When a creature casts a spell that targets or includes me in its area of effect and the spell forces me to make a saving throw to avoid damage, I can use my reaction to attempt to redirect some of the spell's effects to a new target.",
-				"If I succeed on my saving throw against the spell, I can choose another creature within the spell's range or within 30 ft of me, whichever is closer, to make a saving throw against my spell save DC. The chosen creature can be the original caster. On a failed save, the creature suffers the effects of the spell as if you had cast spell and they had been the original target or been within the area of the spell. Once I use this feature, I can't use it again until I finish a short or long rest."
+				"If I succeed on my saving throw against the spell, I can choose another creature within the spell's range or within 30 ft of me, whichever is closer, to make a saving throw against my spell save DC. The chosen creature can be the original caster. On a failed save, the creature suffers the effects of the spell as if I had cast spell and they had been the original target or been within the area of the spell. Once I use this feature, I can't use it again until I finish a short or long rest."
 			]),
 			action : ["reaction",""],
 			usages : 1,
@@ -846,7 +846,7 @@ ClassList["warmage"] = {
 			source : ["VSoS", 160],
 			minlevel : 20,
 			description : desc([
-				"If I cast a cantrip that deals 4 dice of damage to a target, it instead deals 5 dice of damage (excluding my cantrip bonus dice). If you cast a cantrip that makes 4 attacks, it instead makes 5 attacks."
+				"If I cast a cantrip that deals 4 dice of damage to a target, it instead deals 5 dice of damage (excluding my cantrip bonus dice). If I cast a cantrip that makes 4 attacks, it instead makes 5 attacks."
 			])
 		}
     }
@@ -1048,7 +1048,7 @@ AddSubClass("warmage", "house of dice", {
 			source : [["VSoS", 167]],
 			minlevel : 3,
 			description : desc([
-				"At 3rd level, I gain 4 Dice of Fate, which are d6's. Whenever you make an ability check, attack roll, saving throw, or damage roll, you can expend one Die of Fate and add it to the roll. Once I expend a Die of Fate, it goes to the GM, who can use it to add it to a roll made by an NPC or monster. Once the GM has used a die, it passes back to me, and so on. When I finish a long rest, I regain all expended Dice of Fate, whether or not the GM has used them.",
+				"At 3rd level, I gain 4 Dice of Fate, which are d6's. Whenever I make an ability check, attack roll, saving throw, or damage roll, I can expend one Die of Fate and add it to the roll. Once I expend a Die of Fate, it goes to the GM, who can use it to add it to a roll made by an NPC or monster. Once the GM has used a die, it passes back to me, and so on. When I finish a long rest, I regain all expended Dice of Fate, whether or not the GM has used them.",
 				"Starting at 7th level, I gain 2 additional Dice of Fate and I can add two Dice of Fate to damage rolls with warmage spells."
 			]),
 			extraLimitedFeatures : [{
@@ -1071,17 +1071,17 @@ AddSubClass("warmage", "house of dice", {
 				page3notes : true,
 				source : [["VSoS", 167]],
 				note : desc([
-					"\u2022 2: You cast fireball, at 3rd level, centered on yourself.",
-					"\u2022 3: Your AC is reduced by 2 until the start of my next turn.",
-					"\u2022 4: You fall prone.",
-					"\u2022 5: Each creature other than yourself within 60 ft of you can only speak in a babbling nonsense language for the next minute, and can't perform the verbal components of spells.",
-					"\u2022 6: A 5 ft radius sphere of butterflies, insects, or doves fills a location within 60 ft of you causing the area to be heavily obscured until the start of your next turn.",
-					"\u2022 7: You gain 7 temp HP and keep the Dice of Fate instead of giving them to your GM.",
-					"\u2022 8: You become invisible until the end of your next turn, as per the invisibility spell.",
-					"\u2022 9: A random object within 60 ft of you explodes, dealing no damage to you or your allies, and dealing 3d6 fire damage to one creature caught by the blast chosen by the GM.",
-					"\u2022 10: You teleport up to 60 ft to an unoccupied space you can see. Each creature within 5 ft of the destination must succeed on a Dexterity saving throw against your spell save DC or take 2d6 force damage.",
-					"\u2022 11: Choose a creature you can see within 60 ft of you. That creature takes 4d6 necrotic damage, and you regain hit points equal to the necrotic damage dealt.",
-					"\u2022 12: You cast lightning bolt and can add the Dice of Fate to the damage roll.",
+					"\u2022 2: I cast fireball, at 3rd level, centered on myself.",
+					"\u2022 3: My AC is reduced by 2 until the start of my next turn.",
+					"\u2022 4: I fall prone.",
+					"\u2022 5: Each creature other than myself within 60 ft of me can only speak in a babbling nonsense language for the next minute, and can't perform the verbal components of spells.",
+					"\u2022 6: A 5 ft radius sphere of butterflies, insects, or doves fills a location within 60 ft of me causing the area to be heavily obscured until the start of my next turn.",
+					"\u2022 7: I gain 7 temp HP and keep the Dice of Fate instead of giving them to my GM.",
+					"\u2022 8: I become invisible until the end of my next turn, as per the invisibility spell.",
+					"\u2022 9: A random object within 60 ft of me explodes, dealing no damage to me or my allies, and dealing 3d6 fire damage to one creature caught by the blast chosen by the GM.",
+					"\u2022 10: I teleport up to 60 ft to an unoccupied space that I can see. Each creature within 5 ft of the destination must succeed on a Dexterity saving throw against my spell save DC or take 2d6 force damage.",
+					"\u2022 11: Choose a creature that I can see within 60 ft. That creature takes 4d6 necrotic damage, and I regain hit points equal to the necrotic damage dealt.",
+					"\u2022 12: I cast lightning bolt and can add the Dice of Fate to the damage roll.",
 				])
 			}],
 			action : ["action",""]
@@ -1091,7 +1091,7 @@ AddSubClass("warmage", "house of dice", {
 			source : [["VSoS", 168]],
 			minlevel : 7,
 			description : desc([
-				"I can subtly cheat on my dice. Once on each of my turns when I roll a d6, I can flip the die upside down. Note that on a balanced d6, the top and bottom numbers add up to 7, so you can determine the bottom number by subtracting the top number from 7."
+				"I can subtly cheat on my dice. Once on each of my turns when I roll a d6, I can flip the die upside down. Note that on a balanced d6, the top and bottom numbers add up to 7, so I can determine the bottom number by subtracting the top number from 7."
 			]),
 			usages : 1,
 			recovery : "Turn",
@@ -1147,7 +1147,7 @@ AddSubClass("warmage", "house of kings", {
 			minlevel : 3,
 			description : desc([
 				"At 3rd level, I gain two battle dice, which are d8's. A battle die is expended when I use it. I regain all expended battle dice when I finish a short or long rest, or when I roll initiative.",
-				"My battle dice changes and more battle dice become available at 7th (3d8), 13th (3d10), and 19th (4d10) level. Once per turn, I can expend a battle die to perform a stratagem of my choice (see noes page). The saving throw for your stratagem is equal to your spellsave DC."
+				"My battle dice changes and more battle dice become available at 7th (3d8), 13th (3d10), and 19th (4d10) level. Once per turn, I can expend a battle die to perform a stratagem of my choice (see noes page). The saving throw for my stratagem is equal to my spellsave DC."
 			]),
 			additional : levels.map( function(n) {
 				return n < 13 ? "d8" : "d10";
@@ -1163,12 +1163,12 @@ AddSubClass("warmage", "house of kings", {
 				source : [["VSoS", 169]],
 				page3notes : true,
 				note : desc([
-					"\u2022 Blitz: As a bonus action, when you hit a creature with an attack, you can expend one battle die to maneuver one of your comrades into a more advantageous position. Choose a friendly creature that can see or hear you. That creature can use its reaction to move up to half its speed without provoking opportunity attacks from the target of your attack.",
-					"\u2022 Check: As a bonus action, when you hit a creature with an attack, you can expend one battle die to force that creature to flee. The target must make a Charisma saving throw, unless the target is immune to being charmed, or it must immediately use its reaction, if available, to move up to half its speed directly away from you.",
-					"\u2022 Flash of Brilliance: When you make an Intelligence or Wisdom check, you can expend one battle die to add it to the check. You can choose to use this stratagem after the ability check is rolled but before the GM says the result was a success or failure.",
-					"\u2022 Gambit: When you hit a creature with an attack, you can expend one battle die to give your allies an opening. The next creature other than you to make an attack against the target adds the battle die to their attack roll.",
-					"\u2022 Mystic Counsel: You can use a bonus action and expend one battle die to give counsel to a creature that can hear you within 30 ft. Once in the next minute when the creature makes a saving throw against a spell it can choose to roll the battle die and add the result to the saving throw.",
-					"\u2022 Stalemate: When you hit a creature with an attack, you can expend one battle die as a bonus action to hold that creature in place. Until the end of its next turn, the target can’t willingly move unless it first takes the Disengage action."
+					"\u2022 Blitz: As a bonus action, when I hit a creature with an attack, I can expend one battle die to maneuver one of my comrades into a more advantageous position. Choose a friendly creature that can see or hear me. That creature can use its reaction to move up to half its speed without provoking opportunity attacks from the target of my attack.",
+					"\u2022 Check: As a bonus action, when I hit a creature with an attack, I can expend one battle die to force that creature to flee. The target must make a Charisma saving throw, unless the target is immune to being charmed, or it must immediately use its reaction, if available, to move up to half its speed directly away from me.",
+					"\u2022 Flash of Brilliance: When I make an Intelligence or Wisdom check, I can expend one battle die to add it to the check. I can choose to use this stratagem after the ability check is rolled but before the GM says the result was a success or failure.",
+					"\u2022 Gambit: When I hit a creature with an attack, I can expend one battle die to give my allies an opening. The next creature other than me to make an attack against the target adds the battle die to their attack roll.",
+					"\u2022 Mystic Counsel: I can use a bonus action and expend one battle die to give counsel to a creature that can hear me within 30 ft. Once in the next minute when the creature makes a saving throw against a spell it can choose to roll the battle die and add the result to the saving throw.",
+					"\u2022 Stalemate: When I hit a creature with an attack, I can expend one battle die as a bonus action to hold that creature in place. Until the end of its next turn, the target can’t willingly move unless it first takes the Disengage action."
 				])
 			}]
 		},
@@ -1202,7 +1202,7 @@ AddSubClass("warmage", "house of kings", {
 			toNotesPage : [{
 				name : "Stratagem: Checkmate",
 				note : desc([
-					"\u2022 Checkmate: When I hit a creature with a weapon or spell attack, I can use my bonus action and expend a battle die to direct one of my companions to strike. When I do so, choose a friendly creature who can see or hear me that is within reach of the creature you hit. That creature can immediately use its reaction to make one weapon attack or cast a cantrip that requires an attack roll, adding the battle die to the attack's damage."
+					"\u2022 Checkmate: When I hit a creature with a weapon or spell attack, I can use my bonus action and expend a battle die to direct one of my companions to strike. When I do so, choose a friendly creature who can see or hear me that is within reach of the creature I hit. That creature can immediately use its reaction to make one weapon attack or cast a cantrip that requires an attack roll, adding the battle die to the attack's damage."
 				]),
 				page3notes : true,
 			}],
@@ -1213,7 +1213,7 @@ AddSubClass("warmage", "house of kings", {
 			source : [["VSoS", 169]],
 			minlevel : 18,
 			description : desc([
-				"When I roll initiative, choose a number of friendly creatures up to my Intelligence modifier that can see or hear me. Each of the chosen creatures gain a battle die, without you having to expend any battle dice.",
+				"When I roll initiative, choose a number of friendly creatures up to my Intelligence modifier that can see or hear me. Each of the chosen creatures gain a battle die, without me having to expend any battle dice.",
 				"Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, damage roll, or saving throw it makes. The creature can wait until after it makes the roll before deciding to add the battle die, but must decide before the GM determines the roll's outcome. Once the die is rolled, it is lost. A creature can only have one battle die from this feature at a time."
 			])
 		}
@@ -1551,7 +1551,7 @@ AddSubClass("warmage", "house of rooks", {
 			source : [["VSoS", 171]],
 			minlevel : 10,
 			description : desc([
-				"As a reaction when I take damage from a creature that I can see, I can raise a defensive illusion to protect me from further harm. Attacks made against you have disadvantage until the start of my next turn."
+				"As a reaction when I take damage from a creature that I can see, I can raise a defensive illusion to protect me from further harm. Attacks made against me have disadvantage until the start of my next turn."
 			]),
 			action : ["reaction", ""]
 		},
