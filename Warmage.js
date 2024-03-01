@@ -94,14 +94,6 @@ ClassList["warmage"] = {
 				"Whenever I gain a warmage level, I can replace a cantrip I know with another"
 			]),
 			additional : ["4 cantrips known", "4 cantrips known", "5 cantrips known", "5 cantrips known", "6 cantrips known", "6 cantrips known", "6 cantrips known", "6 cantrips known", "7 cantrips known", "7 cantrips known", "7 cantrips known", "7 cantrips known", "8 cantrips known", "8 cantrips known", "8 cantrips known", "8 cantrips known", "9 cantrips known", "9 cantrips known", "9 cantrips known", "10 cantrips known"],
-			// spellcastingBonus : {
-			// 	name : "Cantrips",
-			// 	"class" : "warmage",
-			// 	level : [0, 0],
-			// 	times : levels.map( function (n) { 
-			// 		return n < 3 ? 4 : n < 5 ? 5 : n < 9 ? 6 : n < 13 ? 7 : n < 17 ? 8 : n < 20 ? 9 : 10;
-			// 	})
-			// }
 		}, 
         //below are the following changes and additions from VSoS
         "arcane initiation" : {
@@ -114,7 +106,7 @@ ClassList["warmage"] = {
             "adventurer" : {
                 name : "Arcane Initiation: Adventurer",
                 description : desc([
-                    "You learn the mage hand and ray of frost cantrips."
+                    "I learn the mage hand and ray of frost cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Adventurer",
@@ -126,7 +118,7 @@ ClassList["warmage"] = {
             "circus performer" : {
                 name : "Arcane Initiation: Circus Performer",
                 description : desc([
-                    "You learn the dancing lights and minor illusion cantrips."
+                    "I learn the dancing lights and minor illusion cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Circus Performer",
@@ -138,7 +130,7 @@ ClassList["warmage"] = {
             "eldritch event" : {
                 name : "Arcane Initiation: Eldritch Event",
                 description : desc([
-                    "You learn the chill touch and message cantrips."
+                    "I learn the chill touch and message cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Eldritch Event",
@@ -150,7 +142,7 @@ ClassList["warmage"] = {
             "mercenary" : {
                 name : "Arcane Initiation: Mercenary",
                 description : desc([
-                    "You learn the arc blade and true strike cantrips."
+                    "I learn the arc blade and true strike cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Mercenary",
@@ -162,7 +154,7 @@ ClassList["warmage"] = {
             "temple" : {
                 name : "Arcane Initiation: Temple",
                 description : desc([
-                    "You learn the sacred flame and spare the dying cantrips."
+                    "I learn the sacred flame and spare the dying cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Temple",
@@ -174,7 +166,7 @@ ClassList["warmage"] = {
             "tower apprentice" : {
                 name : "Arcane Initiation: Tower Apprentice",
                 description : desc([
-                    "You learn the prestidigitation and shocking grasp cantrips."
+                    "I learn the prestidigitation and shocking grasp cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Tower Apprentice",
@@ -186,7 +178,7 @@ ClassList["warmage"] = {
             "self-taught" : {
                 name : "Arcane Initiation: Self-Taught",
                 description : desc([
-                    "You learn the fire bolt and light cantrips."
+                    "I learn the fire bolt and light cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Self-Taught",
@@ -198,7 +190,7 @@ ClassList["warmage"] = {
             "survival" : {
                 name : "Arcane Initiation: Survival",
                 description : desc([
-                    "You learn the druidcraft and shillelagh."
+                    "I learn the druidcraft and shillelagh cantrips."
                 ]),
                 spellcastingBonus : {
                     name : "Arcane Initiation: Survival",
@@ -222,9 +214,6 @@ ClassList["warmage"] = {
 				calcChanges : {
 					spellCalc : [
 						function (type, spellcasters, ability) {
-							//Checks to see if the House of Bishop feature is known, then checks whether class is warmage or wizard
-							if( type == "dc" && classes.known.warmge.subclass["warmage-house of bishops"].features.subclassfeature3 && spellcasters.indexOf("warmage") !== -1) return 1;
-							//if we dont know the house of bishops feature, then we can just add +1 to our warmage saves.
 							if( type == "dc" && spellcasters.indexOf("warmage") !== -1 ) return 1;
 						},
 						"I add +1 to all the saving throw DCs of my warmage spells."
@@ -288,7 +277,7 @@ ClassList["warmage"] = {
 							var lvl = classes.known.warmage.level;
 							var extraDie = lvl < 5 ? 0 : lvl < 11 ? 1 : lvl < 17 ? 2 : 3; //The amount of die added based on level
 							var currentDieSize = parseInt(fields.Damage_Die.split('d')[1]);
-							fields.Description += (fields.Description ? '; ' : '+ ') + extraDie + 'd' + currentDieSize + ' + ' + What('Int Mod') + ' damage';
+							fields.Description += (fields.Description ? '; ' : '+ ') + '+' + extraDie + 'd' + currentDieSize + ' + ' + Number(What('Int Mod')) + ' force dmg';
 						}
 					}
 				]
@@ -343,12 +332,15 @@ ClassList["warmage"] = {
 					"When I cast the light cantrip on an object I am holding, I can shoot a flare at a creature within 10 ft of me.",
 					"It must succeed on a Constitution saving throw or become blinded until the start of my next turn. After a creature has failed a saving throw against this trick, it has advantage on all saving throws against it for the next 24 hours."
 				]),
-				spellChanges : {
-					"light" : {
-						description : "1 obj up to 10-ft cube sheds bright light 20-ft rad and dim light 20-ft; cannot have multiple instances; Shoot flare at crea within 10-ft, Con save or blinded",
-						save : "Con",
-						changes : "I can shoot a flare at a creature within 10-ft of me. The creature must make a Constitution saving throw or become blinded."
-					}
+				calcChanges : {
+					spellAdd : [
+						function(spellKey, spellObj, spName) {
+							if(spellKey === "light") {
+								spellObj.description =  "1 obj up to 10-ft cube sheds bright light 20-ft rad and dim light 20-ft; cannot have multiple instances; Shoot flare at crea within 10-ft, Con save or blinded";
+								spellObj.save = "Con";
+							}
+						}
+					]
 				},
 				prereqeval : function(v) { return isSpellUsed('light', true); }
 			},
@@ -387,7 +379,7 @@ ClassList["warmage"] = {
 					source : ["VSoS", 161],
 					ac : "10+Int",
 					affectsWildShape : true,
-					addMod : true
+					addMod : false
 				}],
 				armorAdd : "Cloak of Feathers",
 			},
@@ -441,14 +433,17 @@ ClassList["warmage"] = {
 				description : desc([
 					"When I cast the Cryptogram cantrip, its limit is 20 characters instead of 8, and only the specified recipient can read the message."
 				]),
+				calcChanges : {
+					spellAdd : [
+						function(spellKey, spellObj, spName) {
+							if(spellKey === "cryptogram") {
+								spellObj.description =  "Send a message up to 20 characters (incl. spaces) to known crea on same plane, 1/day; Only recip. can read the message";
+								spellObj.descriptionFull = "You send a small scroll with a short message to a creature of your choice. The recipient must be a creature known to you and also be on the same plane of existence as you. This scroll will hover in front of the recipient, drop into their pocket, or appear sitting on something nearby. The scroll’s message can be up to 20 characters long (spaces count as characters). You can send only one scroll to a single target each day. Only the target is able to read the message.";
+							}
+						}
+					]
+				},
 				prereqeval : function(v) { return isSpellUsed('cryptogram', true); },
-				spellChanges : {
-					"cryptogram" : {
-						description : "Send a message up to 20 characters (incl. spaces) to known crea on same plane, 1/day; Only recip. can read the message",
-						descriptionFull : "You send a small scroll with a short message to a creature of your choice. The recipient must be a creature known to you and also be on the same plane of existence as you. This scroll will hover in front of the recipient, drop into their pocket, or appear sitting on something nearby. The scroll’s message can be up to 20 characters long (spaces count as characters). You can send only one scroll to a single target each day. Only the target is able to read the message.",
-						changes : "The character limit is now 20 instead of 8 and only the recipient can read the message."
-					}
-				}
 			},
 			"explosive cantrip" : {
 				name : "Explosive Catrip",
@@ -523,7 +518,6 @@ ClassList["warmage"] = {
 				spellChanges : {
 					"spare the dying" : {
 						description : "1 living creature with 0 current HP regain 1 HP + warmage level temp HP",
-						descriptionFull : "You touch a living creature that has 0 hit points. The creature regains 1 hit point + my warmage level in temporary hit points which last for 1 minute. A creature that regains hit points this way can't do so again until it finishes a long rest. This spell has no effect on undead or constructs.",
 						changes : "A creature with 0 current HP now regains 1 HP + my warmage level in temp HP"
 					}
 				}
@@ -536,10 +530,10 @@ ClassList["warmage"] = {
 				]),
 				// Works thanks to the help from joost 
 				calcChanges : {
-					atkCalc : [
+					atkAdd : [
 						function(fields, v, output) {
-							if( !v.isDC && v.isSpell && v.thisWeapon[4].indexOf('warmage') !== 1 && ((/melee/i).test(fields.description) || (/melee/).test(fields.Range))) { //only want warmage/wizard melee spell attack cantrips
-								var sRange = fields.Range.match(/\d+([.,]\d+)?/g);  // Handles special cases like thorn whip or other 'ranged' melee spells
+							if( !v.isDC && v.isSpell && v.thisWeapon[4].indexOf('warmage') !== 1 && ((/melee/i).test(fields.description) || (/melee/).test(fields.Range)) && fields.Range.match(/\d+([.,]\d+)?/g) !== null) { //only want warmage/wizard melee spell attack cantrips
+								var sRange = fields.Range.match(/\d+([.,]\d+)?/g);
 								var oChar = fields.Range.split(RegExp(sRange.join('|')));
 								fields.Range = '';
 								sRange.forEach(function (dR, idx) {
@@ -548,7 +542,11 @@ ClassList["warmage"] = {
 								if (oChar.length > sRange.length) {
 									fields.Range += oChar[oChar.length - 1];
 								}; 
-								//Left out the metric if statements, if this is an issue, I can add these back
+								if (!v.rangeM) {
+									v.rangeM = 3;
+								} else {
+									v.rangeM += 3;;
+								}
 							};
 						},
 						"Being within 5 ft of a hostile creature doesn't impose disadvantage on my ranged spell attack rolls. Additionally, my warmage cantrip melee spell attacks has its range increased by 10 ft"
@@ -594,6 +592,15 @@ ClassList["warmage"] = {
 				usages : 1,
 				recovery : "short rest",
 				prereqeval : function(v) { return isSpellUsed('cheat', true) && (/\bpawns|dice|cards\b/).test(classes.known.warmage.subclass); },
+				calcChanges : {
+					spellAdd : [
+						function(spellKey, spellObj, spName) {
+							if(spellKey === "cheat") {
+								spellObj.description =  "Always in effect; Reroll ability checks to play nonmagical games of skill; Reroll atk, ability check, or saving throw once per short/long rest";
+							}
+						}
+					]
+				},
 			},
 			"infinite variation (prereq: prestidigitation)" : {
 				name : "Infinite Variation",
@@ -601,6 +608,65 @@ ClassList["warmage"] = {
 				description : desc([
 					"When I cast prestidigitation, I can emulate the effects of another non-damaging cantrip. To do this, I must succeed on a DC 15 Intelligence (Arcana) or the spell fails. I can pick any cantrip do this with. Intelligence is my spellcasting ability for a cantrip cast using this trick, and it counts as a warmage cantrip for me."
 				]),
+				eval : function () { 
+					CurrentSpells['infinite variation'] = {
+						name : 'Infinite Variation (Prestidigitation)',
+						ability : "warmage", 
+						list : { spells : [] }, 
+						known : { cantrips : 0, spells : 'list' },
+						bonus : {
+							bon1 : {
+								name : 'Just select "Full List"',
+								spells : []
+							},
+							bon2 : {
+								name : 'on the bottom left',
+								spells : []
+							}
+						},
+						typeList : 4,
+						refType : "class",
+						allowUpCasting : true,
+						firstCol : ""
+					};
+					SetStringifieds('spells'); CurrentUpdates.types.push('spells');
+				},
+				removeeval : function () {
+					delete CurrentSpells['infinite variation'];
+					SetStringifieds('spells'); CurrentUpdates.types.push('spells');
+				},
+				calcChanges : {
+					spellAdd : [
+						function (spellKey, spellObj, spName) { 
+							if(spellKey === "prestidigitation") {
+								spellObj.description = "Pick any nondamaging cantrip, recreate it's effects (DC 15 Arcana check or spell fails)";
+							}
+						}
+					],
+					//provide a list of cantrips to choose from
+					spellList : [
+						function(spList, spName, spType) { 
+							if (spName === 'infinite variation') {
+								var allSpellsKnown = [];
+								for (var sCast in CurrentSpells) {
+									if (sCast.refType === "item" || sCast === spName) continue;
+									var oCast = CurrentSpells[sCast];
+									if (oCast.selectCa) allSpellsKnown = allSpellsKnown.concat(oCast.selectCa);
+									if (oCast.selectBo) allSpellsKnown = allSpellsKnown.concat(oCast.selectBo);
+								}
+								var allCantripsKnown = OrderSpells(allSpellsKnown, "single", false, false, 0);
+								spList.spells = [];
+								var cantrips = CreateSpellList({ "class" : "any", level : [0,0] })
+								for (var i = 0; i < cantrips.length; i++) {
+									var oCantrip = SpellsList[cantrips[i]];
+									if ( !/dmg|damage/i.test(oCantrip.description) && allCantripsKnown.indexOf(cantrips[i]) === -1 ) {
+										spList.spells.push( cantrips[i] );
+									}
+								}
+							}
+						}
+					]
+				},
 				prereqeval : function(v) { return isSpellUsed('prestidigitation', true); },
 			},
 			"icy cantrip" : {
@@ -626,15 +692,18 @@ ClassList["warmage"] = {
 				description : desc([
 					"When I cast the force buckler cantrip, I can concentrate on it for up to 1 minute. The spell doesn't end early if I am hit by an attack."
 				]),
-				spellChanges : {
-					"force buckler" : {
-						description : "My AC gains +2 as if wielding a shield; doesn't end early if hit by an attack",
-						descriptionFull : "You summon a translucent yet visible field of force, which springs forth from the prepared gauntlet. While concentrating on this cantrip, this shield grants you a +2 bonus to your Armor Class, as if you were wielding a shield. This spell does not ends early if you are hit by an attack.",
-						duration : "Conc, 1 min",
-						changes : "Being hit doesn't end this cantrip early. I can now concentrate on this cantrip."
-					}
+				calcChanges : {
+					spellAdd : [
+						function (spellKey, spellObj, spName) { 
+							if(spellKey === "force buckler") {
+								spellObj.description ="My AC gains +2 as if wielding a shield; doesn't end early if hit by an attack";
+								spellObj.descriptionFull  = "You summon a translucent yet visible field of force, which springs forth from the prepared gauntlet. While concentrating on this cantrip, this shield grants you a +2 bonus to your Armor Class, as if you were wielding a shield. This spell does not ends early if you are hit by an attack.";
+								spellObj.duration = "Conc, 1 min";
+							}
+						}
+					]
 				},
-				prereqeval : function (v) { return isSpellUsed('force buckler', true) && classes.known.warmage.level >= 10 && (/\bpawns|knights\b/).test(classes.known.warmage.subclass); }
+				prereqeval : function (v) { return classes.known.warmage.level >= 10 && (/\bpawns|knights\b/).test(classes.known.warmage.subclass) && isSpellUsed('force buckler', true); }
 			},
 			"leading edge tactics" : {
 				name : "Leading Edge Tactics",
@@ -677,11 +746,14 @@ ClassList["warmage"] = {
 					])
 				}],
 				prereqeval : function(v) { return isSpellUsed('mage hand', true); },
-				spellChanges : {
-					"mage hand" : {
-						descriptionFull : "Create invisible spectral hand for simple tasks or carry up to 10 lb; 1 a to control; can't have multiples; Upon casting, and Upon casting, and as a bonus action on subsequent turns, You can choose one of the following effects: Press, Punch, Seize. See Notes page.",
-						changes : "Upon casting, and as a bonus action on subsequent turns, I can choose one of the following effects: Press, Punch, Seize. See Notes page."
-					}
+				calcChanges : {
+					spellAdd : [
+						function (spellKey, spellObj, spName) { 
+							if(spellKey === "mage hand") {
+								spellObj.description = "Create invisible spectral hand for simple tasks or carry up to 10 lb; can't have multiples; 1 a and bns a on subsequent turns, choose one of the following from notes page";
+							}
+						}
+					]
 				},
 				action : ["bonus action",""]
 			},
@@ -693,13 +765,16 @@ ClassList["warmage"] = {
 					"This illusion can't replicate a creature, but it can deal damage to a creature within its 5 ft cube. If the illusion is an object that can deal damage, a creature that enters the object's 5 ft cube or begins its turn there must make an Intelligence saving throw. On a failed save, the creature takes 1d6 damge of a type appropriate to the illusion. This damage increases with my warmage level. This damage can't trigger Warmage Edge or any warmage tricks."
 				]),
 				prereqeval : function(v) { return isSpellUsed('minor illusion', true); },
-				spellChanges : {
-					"minor illusion" : {
-						descriptionFull : "You create a sound or an image of an object within range that lasts for the duration. The illusion also ends if you dismiss it as an action or cast this spell again." + "\n   " + "If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends." + "\n   " + "When you create the image of an object in an unoccupied space, you can fill it with fibers of shadowstuff to become partially real. This image must not be larger than a 5 ft cube. It has AC 10 and 5 hit points, and it weighs 5lbs. Only one of these can exist at a time, and while it exists it requires concentration. This illusion can't replicate a creature, but it can deal damage to a creature within its 5 ft cube. If the illusion is an object that can deal damage, a creature that enters the object's 5 ft cube or begins its turn there must make an Intelligence saving throw. On a failed save, the creature takes 1d6 damge of a type appropriate to the illusion. This damage increases with my warmage level. This damage can't trigger Warmage Edge or any warmage tricks." + "\n   " + "If a creature uses its action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
-						descriptionCantripDie : "5ft cube; creature enters or starts its turn in illus. save or 'CD'd6 Force dmg",
-						changes : "When you create the image of an object in an unoccupied space, you can fill it with fibers of shadowstuff to become partially real. This image must not be larger than a 5 ft cube. It has AC 10 and 5 hit points, and it weighs 5lbs. Only one of these can exist at a time, and while it exists it requires concentration. This illusion can't replicate a creature, but it can deal damage to a creature within its 5 ft cube. If the illusion is an object that can deal damage, a creature that enters the object's 5 ft cube or begins its turn there must make an Intelligence saving throw. On a failed save, the creature takes 1d6 damge of a type appropriate to the illusion. This damage increases with my warmage level. This damage can't trigger Warmage Edge or any warmage tricks.",
-					}
-				},
+				calcChanges : {
+					spellAdd : [
+						function (spellKey, spellObj, spName) { 
+							if(spellKey === "minor illusion") {
+								spellObj.descriptionFull = "You create a sound or an image of an object within range that lasts for the duration. The illusion also ends if you dismiss it as an action or cast this spell again." + "\n   " + "If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends." + "\n   " + "When you create the image of an object in an unoccupied space, you can fill it with fibers of shadowstuff to become partially real. This image must not be larger than a 5 ft cube. It has AC 10 and 5 hit points, and it weighs 5lbs. Only one of these can exist at a time, and while it exists it requires concentration. This illusion can't replicate a creature, but it can deal damage to a creature within its 5 ft cube. If the illusion is an object that can deal damage, a creature that enters the object's 5 ft cube or begins its turn there must make an Intelligence saving throw. On a failed save, the creature takes 1d6 damge of a type appropriate to the illusion. This damage increases with my warmage level. This damage can't trigger Warmage Edge or any warmage tricks." + "\n   " + "If a creature uses its action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.";
+								spellObj.descriptionCantripDie = "5ft cube illus.; creature enters or starts its turn in illus. save or 'CD'd6 Force dmg";
+							}
+						}
+					]
+				}
 			},
 			"mystical armor" : {
 				name : "Mystical Armor",
@@ -729,17 +804,23 @@ ClassList["warmage"] = {
 					"When I cast quickstep, my speed inccreases by 20 feet instead of 10. When I cast springheel, my jumping distance increases by 20 feet instead of 10. If I know both of these cantrips, I can cast both of them as part of the same bonus action."
 				]),
 				prereqeval : function(v) { return isSpellUsed('quickstep', true) || isSpellUsed('springheel', true); },
-				spellChanges : {
-					"quickstep" : {
-						description : "My walking speed increases by 20 ft until the start of my next turn",
-						descriptionFull : "You call upon your inner reserves to give you a brief flash of speed. When you cast this spell, your walking speed increases by 20 feet until the start of your next turn.",
-						changes : "When I cast this cantrip, my speed increases by 20 ft instead of 10. If I also know springheel, I can cast both using the same bonus action"
-					},
-					"springheel" : {
-						description : "Jump speed increases by 20 ft., and can running high or long jump w/o running start",
-						descriptionFull : "You flood magic into your legs, allowing you to bound high into the air from a standstill. When you cast this spell, your jump distance increases 20 feet until the start of your next turn, and you can make a running high jump or a running long jump without a running start.",
-						changes : "When I cast this cantrip, my jump increases by 20 ft instead of 10. If I also know quickstep, I can cast both using the same bonus action"
-					}
+				calcChanges : {
+					spellAdd : [
+						function (spellKey, spellObj, spName) { 
+							if(spellKey === "quickstep" || spellKey === "springheel") {
+								switch(spellKey) {
+									case "quickstep" :
+										spellObj.description = "My walking speed increases by 20 ft until the start of my next turn";
+										spellObj.descriptionFull = "You call upon your inner reserves to give you a brief flash of speed. When you cast this spell, your walking speed increases by 20 feet until the start of your next turn.";
+										break;
+									case "springheel" : 
+										spellObj.description = "Jump speed increases by 20 ft., and can running high or long jump w/o running start";
+										spellObj.descriptionFull = "You flood magic into your legs, allowing you to bound high into the air from a standstill. When you cast this spell, your jump distance increases 20 feet until the start of your next turn, and you can make a running high jump or a running long jump without a running start.";
+										break
+								}
+							}
+						}
+					]
 				}
 			},
 			"mystical weapon master (prereq: force weapon or magic daggers)" : {
@@ -748,6 +829,22 @@ ClassList["warmage"] = {
 				description : desc([
 					"Once on each of my turns when I roll a 1 on the attack roll using the force weapon or magic daggers cantrip, I can reroll and must use the new roll."
 				]),
+				calcChanges : {
+					spellAdd : [
+						function(spellKey, spellObj, spName) {
+							if(spellKey === "force weapon" || spellKey === "magic daggers") {
+								switch(spellKey) {
+									case "force weapon" :
+										spellObj.descriptionCantripDie = "`CD` melee spell atks for 1d10 Force dmg each; can make 1 Opp. Attack before next turn; Once per turn, reroll 1's on attack roll";
+										break;
+									case "magic daggers" : 
+										spellObj.descriptionCantripDie = "`CD` ranged spell atks for 1d6 Piercing dmg each; Once per turn, reroll 1's on attack roll";
+										break;
+								}
+							}
+						}
+					]
+				},
 				prereqeval : function(v) { return isSpellUsed('force weapon', true) || isSpellUsed('magic daggers', true); },
 			},
 			"mystical vision" : {
@@ -770,12 +867,15 @@ ClassList["warmage"] = {
 					"I can cast phantom grapnel as a bonus action. If I do, the range is reduced to 15 feet. Additionally, creatures pulled by phantom grapnel are pulled an additional 10 feet."
 				]),
 				prereqeval : function(v) { return isSpellUsed('phantom grapnel', true); },
-				spellChanges : {
-					"phantom grapnel" : {
-						description : "Move to Huge or larger crea or empty space, or pull Large or smaller crea 20 ft. to me on failed save",
-						descriptionFull : "You conjure a chain and hook made of magical force, which you propel at a creature or unoccupied space you can see within range. When you target a space or a creature of Huge size or larger, your grapnel pulls you to that target in a straight line. You provoke opportunity attacks for this movement as normal. When you target a creature of Large size or smaller, you pull the target up to 20 feet towards you. A creature can make a Strength saving throw to resist this movement.",
-						changes : "You can now cast this as a bonus action. Doing so, the range is reduced by 15 ft and creatures are pulled an additional 10 ft."
-					}
+				calcChanges : {
+					spellAdd : [
+						function(spellKey, spellObj, spName) {
+							if(spellKey === "phantom grapnel") {
+								spellObj.description = "Move to Huge or larger crea or empty space, or pull Large or smaller crea 20 ft. to me on failed save";
+								spellObj.descriptionFull = "You conjure a chain and hook made of magical force, which you propel at a creature or unoccupied space you can see within range. When you target a space or a creature of Huge size or larger, your grapnel pulls you to that target in a straight line. You provoke opportunity attacks for this movement as normal. When you target a creature of Large size or smaller, you pull the target up to 20 feet towards you. A creature can make a Strength saving throw to resist this movement.";
+							}
+						}
+					]
 				}
 			},
 			"rapid fortification (prereq: mending)" : {
@@ -787,12 +887,16 @@ ClassList["warmage"] = {
 					"Create simple fortifications, such as sealing a door shut, adding wooden planks to a window, or building a short stone wall (no larger than 10 cubic feet). You must have the materials present to use this ability."
 				]),
 				prereqeval : function(v) { return isSpellUsed('mending', true); },
-				spellChanges : {
-					"mending" : {
-						description : "I can cast mending as a bonus action, or choose to restore/create",
-						descriptionFull : "I can cast mending as a bonus action, or I can choose one of the following. *Restore a single nonmagical object, such as a door, cart, or window, to pristine condition if at least half of its parts are present. This object can be no larger than 10 cubic feet, or 1 cubic foot if it exceptionally complex (such as a clock). *Create simple fortifications, such as sealing a door shut, adding wooden planks to a window, or building a short stone wall (no larger than 10 cubic feet). You must have the materials present to use this ability.",
-						chages : "You can now restore a single nonmagical object if at least half of its parts are present and must not be larger than 10 cubic ft or 1 cubic ft if its complex. You can also create simple fortications (no larger than 10 cubic ft) and must have materials present while doing this."
-					}
+				calcChanges : {
+					spellAdd : [
+						function(spellKey, spellObj, spName) {
+							if(spellKey === "mending") {
+								spellObj.description = "1/2 parts are present (Restore) or materials present (Forify); No larger than 10ft or 1ft if complex";
+								spellObj.descriptionFull =  "I can cast mending as a bonus action, or I can choose one of the following. Restore a single nonmagical object, such as a door, cart, or window, to pristine condition if at least half of its parts are present. This object can be no larger than 10 cubic feet, or 1 cubic foot if it exceptionally complex (such as a clock). Create simple fortifications, such as sealing a door shut, adding wooden planks to a window, or building a short stone wall (no larger than 10 cubic feet). You must have the materials present to use this ability.";
+								spellObj.time = "1 bns"
+							}
+						}
+					]
 				}
 			},
 			"snake eyes (prereq: level 10)" : {
@@ -868,11 +972,15 @@ ClassList["warmage"] = {
 				description : desc([
 					"When I cast the true strike cantrip, I can concerntrate on it for a number of rounds equal to my Intelligence modifer. I gain advantage on the first attack roll I make against the target on each of my turns while maintaining concentration."
 				]),
-				spellChanges : {
-					"true strike" : {
-						description : "1 crea; Conc. equals Int mod number of rounds; Adv. on first attack roll every turn",
-						changes : "I can concerntrate on it for a number of rounds equal to my Intelligence modifer. I gain advantage on the first attack roll I make against the target on each of my turns while maintaining concentration."
-					}
+				calcChanges : {
+					spellAdd : [
+						function(spellKey, spellObj, spName) {
+							if(spellKey === "true strike") {
+								spellObj.description = "1 crea; Conc. equals Int mod number of rounds; Adv. on first attack roll every turn";
+								spellObj.descriptionFull += " I can concerntrate on it for a number of rounds equal to my Intelligence modifer. I gain advantage on the first attack roll I make against the target on each of my turns while maintaining concentration."
+							}
+						}
+					]
 				}
 			}
 		},
@@ -934,14 +1042,13 @@ AddSubClass("warmage", "house of bishops", {
 			]),
 			additional : levels.map( function(n) {
 				return (n < 3 ? "" : n < 4 ? 3 : n < 7 ? 4 : n < 8 ? 5 : n < 10 ? 6 : n < 11 ? 7 : n < 13 ? 8 : n < 14 ? 9 : n < 16 ? 10 : n < 19 ? 11 : n < 20 ? 12 : 13) + " spells known";
-				// at level 4, no extra dice, + int mod to spell damage. Include spells known (4 spells known)
 			}),
 			calcChanges : {
 				spellAdd : [
 					function( spellKey, spellObj, spName ) {
 						//we already added our Int Mod to cantrips
 						//we just want spells in our current spells that are leveled wizard spells.
-						if( !CurrentSpells[spName] || spName.indexOf("wizard") == -1 || !What("Int Mod") || Number(What("Int Mod")) || spellObj.level === 0 || spellObj.psionic) return;
+						if( !CurrentSpells[spName] || spName.indexOf("warmage") == -1 || !What("Int Mod") || Number(What("Int Mod")) || spellObj.level === 0 || spellObj.psionic || spellKey === "magic missile") return;
 						return genericSpellDmgEdit(spellKey, spellObj, "\\w+\\.?", "Int", false);
 					}
 				]
@@ -952,32 +1059,31 @@ AddSubClass("warmage", "house of bishops", {
 				var addedSpells = [];
 				
 				var wizardSpells = CreateSpellList({"class" : "wizard", level : [1,4], school : ["Conj", "Evoc"]}, false, false, false);
-				var wizardNotSpells = CreateSpellList({"class" : "wizard", level : [1, 4], school : ["Abjur", "Div", "Ench", "Illus", "Necro", "Trans", "Avatar", "Awake", "Immor", "Nomad", "Wu Jen"]}, false, false, false);
-				var wizardCantrips = CreateSpellList({"class" : "wizard", level : [0,0]}, false, false, false);
+				// var wizardNotSpells = CreateSpellList({"class" : "wizard", level : [1, 4], school : ["Abjur", "Div", "Ench", "Illus", "Necro", "Trans", "Avatar", "Awake", "Immor", "Nomad", "Wu Jen"]}, false, false, false);
+				// var wizardCantrips = CreateSpellList({"class" : "wizard", level : [0,0]}, false, false, false);
 			
 				// Add new spells to the warmage's spell list
 				ClassList.warmage.spellcastingExtra = wizardSpells;
 				addedSpells = addedSpells.concat(wizardSpells); // Track added spells
-				ClassList.warmage.spellcastingList.notspells = ClassList.warmage.spellcastingList.notspells.concat(wizardCantrips.concat(wizardNotSpells));
-				addedSpells = addedSpells.concat(wizardCantrips, wizardNotSpells); // Track added spells
+				// ClassList.warmage.spellcastingList.notspells = ClassList.warmage.spellcastingList.notspells.concat(wizardCantrips.concat(wizardNotSpells));
+				// addedSpells = addedSpells.concat(wizardCantrips, wizardNotSpells); // Track added spells
 			
 				// Update spells known with this array
 				ClassList.warmage.spellcastingKnown.spells = [0, 0, 2, 3, 3, 3, 4, 4, 4, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9];
 			
 				// Change class and level to match what we now know
-				ClassList.warmage.spellcastingList.class = ["warmage", "wizard"];
+				// ClassList.warmage.spellcastingList.class = ["warmage", "wizard"];
 				ClassList.warmage.spellcastingList.level = [0, 4];
 				
 			},
 			removeeval: function() {
-				
 				// Remove only the spells that were previously added during eval
 				ClassList.warmage.spellcastingExtra = ClassList.warmage.spellcastingExtra.filter(function(spell) {
 					return !addedSpells.includes(spell);
 				});
-				ClassList.warmage.spellcastingList.notspells = ClassList.warmage.spellcastingList.notspells.filter(function(spell) {
-					return !addedSpells.includes(spell);
-				});
+				// ClassList.warmage.spellcastingList.notspells = ClassList.warmage.spellcastingList.notspells.filter(function(spell) {
+				// 	return !addedSpells.includes(spell);
+				// });
 				// Reset the addedSpells array 
 				addedSpells = [];
 				
@@ -1725,7 +1831,7 @@ SpellsList["burning blade"] = {
 	compMaterial : "A melee weapon",
 	duration : "Instantaneous",
 	ritual: false,
-	description : "Melee wea atk w/cast; hit: wea dmg is Fire +0d6 Fire dmg, fire stays in tgt space; +1d6 CL5/11/17, B",
+	description : "Melee wea atk w/cast; hit: wea dmg is Fire +0d6 Fire dmg, fire stays in tgt space; +1d6 CL5/11/17",
 	descriptionCantripDie : "Melee wea atk with cast; hit: +`CD-1`d6 Fire dmg, fire stays in tgt space;",
 	descriptionFull : "As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell’s range, otherwise the spell fails. On a hit, the target suffers the weapon attack’s normal effects, except that any damage dealt by the attack is fire damage instead of its normal type. Additionally, embers whirl in the target’s space. Until the start of your next turn, when a creature enters the space for the first time or ends its turn there, you can use your reaction to deal 1d6 fire damage to the creature, ending the spell." + "\n   " + "This spell’s damage increases when you reach certain levels. At 5th level, the melee attack deals an additional 1d6 fire damage to the target on a hit, and the secondary damage deals an additional 1d6 fire damage to its target. Both damage rolls increase by one die at 11th level (2d6 and 3d6) and 17th level (3d6 and 4d6)."
 };
@@ -2147,86 +2253,3 @@ WeaponsList["thunderous distortion"] = {
 	abilitytodamage : false,
 	dc : true
 };
-
-/*
-	This was my attempt to try to work on the previous script made by MPMB to add the house of bishops subclass.
-	Had to stop due to MFoV and VSoS being different
-	Also this was quite messy and I wanted to redo what I wrote
-
-*/
-// AddSubClass("warmage", "bishops", {
-// 	regExpSearch : /^(?=.*warmage)(?=.*bishops?).*$/i,
-// 	subname : "House of Bishops",
-// 	source : ["VSoS", 164],
-// 	features : {
-// 		"subclassfeature3" : { //this needs some fixing since it essentially gets access to the wizard spell list
-// 			name : "Potent Spellcasting",
-// 			source : [["VSoS", 165], ["MFoV:CW",0]],
-//             minlevel : 3,
-//             description : desc([
-//                 "At 3rd level, I gain the ability to cast spells more potent than cantrips. I gain one spell from any school and 2 from conjuration or evocation. Any other spells must also be conjuration or evocation",
-//                 "I can cast wizard spells, using Intelligence as my spellcasting ability.",
-//                 "Whenever I gain a warmage level, I can replace a spell I know with another from the wizard spell list"
-//             ]),
-//             //custom additional since there is essentially no pattern to this
-//             additional : ["", "", "3 spells known", "4 spells known", "4 spells known", "4 spells known", "5 spells known", "6 spells known", "6 spells known", "7 spells known", "8 spells known", "8 spells known", "9 spells known", "10 spells known", "10 spells known", "11 spells known", "11 spells known", "11 spells known", "12 spells known", "13 spells known"],
-//             commoneval : function(chc,lvl) {
-//                 if(!chc) return;
-//                 CurrentSpells['Potent Spellcasting'] = {
-//                     name : 'Wizard Spells',
-//                     level : lvl,
-//                     typeSp : "known",
-//                     refType : "class",
-//                     ability : 4, 
-//                     abilityToUse : [4, []],
-//                     list : {"class" : "warmage"},
-//                     known : {
-//                         cantrips : [],
-//                         spells : [0, 0, 3, 4, 4, 4, 5, 6, 6, 7, 8, 8, 9, 10, 10, 11, 11, 11, 12, 13], 
-//                         factor : [3,"default"],    //force chosen class to use half-casting factor from spellblade
-//                         spellsTable : false
-//                     },
-//                     allowUpCasting : true,
-//                 }
-//                 SetStringifieds('spells'); CurrentUpdates.types.push('spells');
-//             },
-//             // abilitySave : 4,
-//             // spellcastingFactor : 3, //im not entirely sure if this is true
-//             // spellcastingList : {
-//             //     "class" : "wizard",
-//             //     school : ["Evoc", "Conj"],
-//             //     level : [1, 4]
-//             // },
-//             // spellcastingKnown : {
-//             //     cantrips : [], //leave empty since we gain no access to cantrips
-//             //     spells : [0, 0, 3, 4, 4, 4, 5, 6, 6, 7, 8, 8, 9, 10, 10, 11, 11, 11, 12, 13]
-//             // },
-// 		},
-//         calcChanges : {
-//             atkCalc : [
-//                 function(fields, v, output) {
-//                     //must be a leveled spell from the warmage spell list
-//                     if(classes.known.warmage && classes.known.warmage.level > 4 && v.isSpell && v.thisWeapon[3] && SpellsList[v.thisWeapon[3]].level !== 0 && v.thisWeapon[4].indexOf("warmage") !== -1) {
-//                         var lvl = classes.known.warmage.lvl;
-//                         output.extraDmg += lvl + "d6";
-//                     }
-//                 }
-//             ],
-//             spellAdd : [
-//                 function(spellKey, spellObj, spName) {
-//                     /*
-//                         The warmage edge feature is part of the class feature and this feature is a separate subclass but adds on to it.
-//                         Since this is done in the class, we can exclude it being a cantrip, but we will need to add Int to the damage (not yet done)
-//                     */
-//                     //exclude magic missile from this feature. It only applies to leveled warmage spells
-//                     if(spellObj.psionic || spName !== "warmage" || spellKey === "magic missile" || spellObj.level === 0) return;
-//                     var lvl = levels.map(function (n) {
-//                         return n < 5 ? 0 : n < 11 ? 1 : n < 17 ? 2 : 3
-//                     });
-//                     //lvl 1-4 is 0, 5-10 is 1, 11-16 is 2, and 17-20 is 3
-//                     return genericSpellDmgEdit(spellKey, spellObj, "dmg|damage", lvl + "d6");
-//                 }
-//             ]
-//         }
-// 	}
-// })
