@@ -1059,20 +1059,19 @@ AddSubClass("warmage", "house of bishops", {
 				var addedSpells = [];
 				
 				var wizardSpells = CreateSpellList({"class" : "wizard", level : [1,4], school : ["Conj", "Evoc"]}, false, false, false);
-				// var wizardNotSpells = CreateSpellList({"class" : "wizard", level : [1, 4], school : ["Abjur", "Div", "Ench", "Illus", "Necro", "Trans", "Avatar", "Awake", "Immor", "Nomad", "Wu Jen"]}, false, false, false);
-				// var wizardCantrips = CreateSpellList({"class" : "wizard", level : [0,0]}, false, false, false);
+				var wizardNotSpells = CreateSpellList({"class" : "wizard", level : [1, 4], school : ["Abjur", "Div", "Ench", "Illus", "Necro", "Trans", "Avatar", "Awake", "Immor", "Nomad", "Wu Jen"]}, false, false, false);
+				var wizardCantrips = CreateSpellList({"class" : "wizard", level : [0,0]}, false, false, false);
 			
 				// Add new spells to the warmage's spell list
 				ClassList.warmage.spellcastingExtra = wizardSpells;
-				addedSpells = addedSpells.concat(wizardSpells); // Track added spells
-				// ClassList.warmage.spellcastingList.notspells = ClassList.warmage.spellcastingList.notspells.concat(wizardCantrips.concat(wizardNotSpells));
-				// addedSpells = addedSpells.concat(wizardCantrips, wizardNotSpells); // Track added spells
+				ClassList.warmage.spellcastingList.notspells = ClassList.warmage.spellcastingList.notspells.concat(wizardCantrips.concat(wizardNotSpells));
+				addedSpells = addedSpells.concat(wizardCantrips, wizardNotSpells); // Track added spells
 			
 				// Update spells known with this array
 				ClassList.warmage.spellcastingKnown.spells = [0, 0, 2, 3, 3, 3, 4, 4, 4, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9];
 			
 				// Change class and level to match what we now know
-				// ClassList.warmage.spellcastingList.class = ["warmage", "wizard"];
+				ClassList.warmage.spellcastingList.class = ["warmage", "wizard"];
 				ClassList.warmage.spellcastingList.level = [0, 4];
 				
 			},
@@ -1081,12 +1080,11 @@ AddSubClass("warmage", "house of bishops", {
 				ClassList.warmage.spellcastingExtra = ClassList.warmage.spellcastingExtra.filter(function(spell) {
 					return !addedSpells.includes(spell);
 				});
-				// ClassList.warmage.spellcastingList.notspells = ClassList.warmage.spellcastingList.notspells.filter(function(spell) {
-				// 	return !addedSpells.includes(spell);
-				// });
+				ClassList.warmage.spellcastingList.notspells = ClassList.warmage.spellcastingList.notspells.filter(function(spell) {
+					return !addedSpells.includes(spell);
+				});
 				// Reset the addedSpells array 
 				addedSpells = [];
-				
 			},
 			spellcastingBonus : [{ // the spells gained at level 3, 8, 14, 20
 				name : "From any school",
